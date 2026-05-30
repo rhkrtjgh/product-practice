@@ -1,12 +1,22 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   /* config options here */
   reactStrictMode: true,
-  compiler:{
+  compiler: (() => {
     //styledComponents 활성화
-    styledComponents: true,
-  },
+    let compilerConfig = {
+      styledComponents: true,
+    }
+
+    if(process.env.NODE_ENV === 'production') {
+      compilerConfig = {
+        ...compilerConfig,
+        
+      }
+    }
+    return compilerConfig;
+  })(),
 };
 
-export default nextConfig;
+module.exports = nextConfig;
