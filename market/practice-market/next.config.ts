@@ -17,6 +17,13 @@ const nextConfig = {
     }
     return compilerConfig;
   })(),
+  async rewrites() {
+    return [
+      {
+        source: `${process.env.NEXT_PUPLIC_API_BASE_PATH}/:match*`,
+      },
+    ]
+  },
 };
 
 module.exports = nextConfig;
